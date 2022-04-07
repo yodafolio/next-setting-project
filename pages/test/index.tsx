@@ -1,5 +1,11 @@
 const Test = () => {
-    return <h1>Test</h1>;
+    return (
+        <div>
+            <ul>
+                <li>test</li>
+            </ul>
+        </div>
+    );
 };
 
 export default Test;

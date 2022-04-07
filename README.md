@@ -30,3 +30,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## React-Query 도입에 관하여 알아야 할 것들
+
+useMutation: 서버의 데이터 변경 요청을 할 때 사용하는 함수로, Create, Update, Delete 요청과 같이 API 통신으로 Server State에 Side Effect가 일어나는 경우에 사용합니다.
+(참고: https://techblog.woowahan.com/6339/)

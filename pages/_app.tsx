@@ -6,6 +6,10 @@ import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import { theme } from '../theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+const queryClient = new QueryClient();
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,7 +27,12 @@ const App = (props) => {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    {getLayout(<Component {...pageProps} />)}
+                    {getLayout(
+                        <QueryClientProvider client={queryClient}>
+                            <Component {...pageProps} />
+                            <ReactQueryDevtools initialIsOpen={true} />
+                        </QueryClientProvider>,
+                    )}
                 </ThemeProvider>
             </LocalizationProvider>
         </CacheProvider>
