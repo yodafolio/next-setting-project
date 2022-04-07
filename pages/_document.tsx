@@ -38,15 +38,24 @@ class CustomDocument extends Document {
     }
 }
 
+// `getInitialProps`는 `_document`(`_app` 대신)에 속합니다.
+// 정적 사이트 생성(SSG)과 호환됩니다.
 CustomDocument.getInitialProps = async (ctx) => {
     const originalRenderPage = ctx.renderPage;
+
+    // 성능 속도를 높이기 위해 모든 SSR 요청 간에 동일한 감정 캐시를 공유하는 것을 고려할 수 있습니다.
+    // 하지만 전역적인 부작용이 있을 수 있다는 점에 유의하십시오.
     const cache = createEmotionCache();
     const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () =>
         originalRenderPage({
             // eslint-disable-next-line react/display-name
-            enhanceApp: (App) => (props) => <App emotionCache={cache} {...props} />,
+            enhanceApp: (App: any) => (props) => <App emotionCache={cache} {...props} />,
+            // enhanceApp: (App: any) =>
+            //     function enhanceApp(props) {
+            //         return <App emotionCache={cache} {...props} />;
+            //     },
         });
 
     const initialProps = await Document.getInitialProps(ctx);

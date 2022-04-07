@@ -66,9 +66,7 @@ const Home = () => {
 };
 
 console.log('Home.getLayout', Home.getLayout);
-Home.getLayout = (page) => {
-    <DashboardLayout>{page}</DashboardLayout>;
-};
+Home.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Home;
 
